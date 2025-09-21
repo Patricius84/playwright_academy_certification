@@ -1,0 +1,16 @@
+tests
+
+e2e tests serial               - 100 % done
+api test included in e2e tests -   0 %
+data driven tests              -   0 %
+atomic tets                    - 100 % done
+visual tests                   -   0 %
+
+//-----------------------------------
+
+page objects
+
+registration page              -  80 %
+login page                     - 100 % done
+profile detail page            -  80 %
+profile detail edit page       -  80 %

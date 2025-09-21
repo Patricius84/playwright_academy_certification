@@ -1,4 +1,6 @@
-import { Locator, Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
+import { ProfileDetailPage } from "./profile_detail_page";
+import { LoginPage } from "./login_page";
 
 export class RegistrationPage {
   readonly page: Page;
@@ -23,22 +25,34 @@ export class RegistrationPage {
   }
 
   async fillPassword(username: string): Promise<this> {
-    await this.usernameInput.fill(username);
+    await this.passwordInput.fill(username);
     return this;
   }
 
   async fillEmail(username: string): Promise<this> {
-    await this.usernameInput.fill(username);
+    await this.emailInput.fill(username);
     return this;
   }
 
-  async clickRegistrationConfirmButton(): Promise<this> {
-    await this.registrationConfirmButton.click();
-    return this;
+  async checkRegistrationConfirmButton(text: string): Promise<this> {
+    await this.registrationConfirmButton.isVisible()
+    await expect(this.registrationConfirmButton).toHaveText(text, { timeout: 15000 })
+    return this
   }
 
-  async clickBackToLoginButton(): Promise<this> {
+  async clickRegistrationConfirmButton(): Promise<LoginPage> {
+    await this.registrationConfirmButton.click()
+    return new LoginPage(this.page)
+  }
+
+  async checkBackToLoginButton(text: string): Promise<this> {
+    await this.backToLoginButton.isVisible()
+    await expect(this.backToLoginButton).toHaveText(text, { timeout: 15000 })
+    return this
+  }
+
+  async clickBackToLoginButton(): Promise<LoginPage> {
     await this.backToLoginButton.click();
-    return this;
+    return new LoginPage(this.page)
   }
 }
