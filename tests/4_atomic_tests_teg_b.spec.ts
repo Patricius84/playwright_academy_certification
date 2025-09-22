@@ -5,8 +5,8 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 test.describe("atomic tests for dashboard", () => {
-  const username = process.env.USERNAME1!;
-  const password = process.env.PASSWORD!;
+  const username = process.env.USERNAME2!;
+  const password = process.env.PASSWORD2!;
 
   test.beforeEach(async ({ page }) => {
     const loginPage = new LoginPage(page);
@@ -83,6 +83,7 @@ test.describe("atomic tests for dashboard", () => {
       .then((profile) => profile.clickProfileDetailEditButton())
       .then((editProfile) => editProfile.checkSaveChangesButton("Uložit změny"))
       .then((editProfile) => editProfile.clickSaveChangesButton())
+      .then((editProfile) => editProfile.checkProfileUpdatedsuccessfullyText())      
       .then((profile) => profile.checkProfileDetailEditButton("Upravit profil"))
       .then((profile) => profile.checkAddAccountButton("Přidat účet"))
       // .then((profile) => profile.clickAddAccountButton())

@@ -21,8 +21,11 @@ export class ProfileDetailPage {
   readonly profileDetailEditButton: Locator;
   readonly accountsDetailHeader: Locator;
   readonly accountNumberColumnHeader: Locator;
+  readonly accountNumberValue: Locator;
   readonly balanceColumnHeader: Locator;
+  readonly balanceValue: Locator;
   readonly accountTypeColumnHeader: Locator;
+  readonly accountTypeValue: Locator;
   readonly addAccountButton: Locator;
   readonly logoutButton: Locator;
 
@@ -45,8 +48,11 @@ export class ProfileDetailPage {
     this.profileDetailEditButton = page.locator('button[data-testid="toggle-edit-profile-button"]');
     this.accountsDetailHeader = page.locator('h2[data-testid="accounts-title"]');
     this.accountNumberColumnHeader = page.locator('th[data-testid="account-number-heading"]');
+    this.accountNumberValue = page.locator('td[data-testid="account-number"]')
     this.balanceColumnHeader = page.locator('th[data-testid="account-balance-heading"]');
+    this.balanceValue = page.locator('td[data-testid="account-balance"]')
     this.accountTypeColumnHeader = page.locator('th[data-testid="account-type-heading"]');
+    this.accountTypeValue = page.locator('td[data-testid="account-type"]')
     this.addAccountButton = page.locator('button[class="account-action"]');
     this.logoutButton = page.locator('button[class="logout-link"]');
   }
@@ -195,15 +201,38 @@ export class ProfileDetailPage {
     return this;
   }
 
+  async checkAccountNumberValue(): Promise<this> {
+    await this.accountNumberValue.isVisible({ timeout: 15000 })
+    return this;
+  }
+
   async checkBalanceColumnHeader(Value: string): Promise<this> {
     await this.balanceColumnHeader.isVisible()
     await expect(this.balanceColumnHeader).toHaveText(Value)
     return this;
   }
 
+  async checkBalanceValue(Value: string): Promise<this> {
+    await this.balanceValue.isVisible()
+    await expect(this.balanceValue).toContainText(Value)
+    return this;
+  }
+
+  async checkBalanceCurrency(Value: string): Promise<this> {
+    await this.balanceValue.isVisible()
+    await expect(this.balanceValue).toContainText(Value)
+    return this;
+  }
+
   async checkAccountTypeColumnHeader(Value: string): Promise<this> {
     await this.accountTypeColumnHeader.isVisible()
     await expect(this.accountTypeColumnHeader).toHaveText(Value)
+    return this;
+  }
+
+  async checkAccountTypeValue(Value: string): Promise<this> {
+    await this.accountTypeValue.isVisible()
+    await expect(this.accountTypeValue).toHaveText(Value)
     return this;
   }
 

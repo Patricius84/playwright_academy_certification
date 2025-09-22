@@ -1,7 +1,8 @@
 tests
 
 e2e tests serial               - 100 % done
-api test included in e2e tests -   0 %
+api test included in e2e tests - 100 % done
+api test for login             - 100 % done
 data driven tests              -   0 %
 atomic tets                    - 100 % done
 visual tests                   -   0 %
@@ -10,7 +11,18 @@ visual tests                   -   0 %
 
 page objects
 
-registration page              -  80 %
+registration page              - 100 %
 login page                     - 100 % done
-profile detail page            -  80 %
-profile detail edit page       -  80 %
+profile detail page            - 100 %
+profile detail edit page       - 100 %
+
+//-----------------------------------
+
+api objects
+
+login                          - 100% done
+add account                    - 100% done
+
+//-----------------------------------
+
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBhdHJpay5rb2xlbiIsInN1YiI6MTc0OTgsImlhdCI6MTc1ODU1MTg4MywiZXhwIjoxNzU4NTU1NDgzfQ.XyUDJluh_8Ihpx0lwqPkiieFjrbeUEcavXDVbQG97zc

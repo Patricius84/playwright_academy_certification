@@ -1,6 +1,7 @@
 import { test } from "@playwright/test";
 import { LoginPage } from "../src/pages/login_page";
 import { fakerEN as faker } from "@faker-js/faker";
+import { createAccountViaAPI } from "../src/api/add_account_api";
 
 test.describe.serial("e2e test - from registration to profile update", () => {
   const firstname = faker.person.firstName()
@@ -10,7 +11,11 @@ test.describe.serial("e2e test - from registration to profile update", () => {
   const age = faker.number.int({ min: 18, max: 59 }).toString()
   const username = firstname + " " + surname;
   const password = faker.internet.password();
-  const email = firstname + "." + surname + randomNumber + "@examle.net"
+  const email = firstname + "." + surname + randomNumber + "@examle.net";
+  const balanceValue = faker.number.int({ min: 1001, max: 199999 })
+  const balanceValueText = balanceValue.toString()
+  const accountTypeOptions = ["Current", "Savings", "Term", "Loan", "Student", "Business"];
+  const accountType = accountTypeOptions[Math.floor(Math.random() * accountTypeOptions.length)];
 
   test.beforeEach(async ({ page }) => {
     const loginPage = new LoginPage(page);
@@ -19,7 +24,7 @@ test.describe.serial("e2e test - from registration to profile update", () => {
       .openTegbFrontend()
   });
 
-  test("registration for new user and check success message", async ({ page }) => {
+  test("register new user and check success message", async ({ page }) => {
     const loginPage = new LoginPage(page);
 
     await loginPage
@@ -32,10 +37,14 @@ test.describe.serial("e2e test - from registration to profile update", () => {
       .then((login) => login.checkLoginFormIsVisible())
       .then((login) => login.checkRegistrationSuccessMessageIsVisible())
       .then((login) => login.checkRegistrationSuccessMessageText())
+
+      console.log("username:", username);
+      console.log("password:", password);
   });
 
-  test("create new account by API request", async ({ page }) => {
-    // in progress
+  test("create new account via API request", async ({ request }) => {
+    const account = await createAccountViaAPI(request, username, password, accountType, balanceValue);
+    console.log("account created:", account.accountNumber);
   });
 
   test("check new account and logout", async ({ page }) => {
@@ -47,7 +56,10 @@ test.describe.serial("e2e test - from registration to profile update", () => {
       .then((login) => login.fillPassword(password))
       .then((login) => login.clickLoginButton())
       .then((profile) => profile.checkProfileDetailIsVisible())
-      // in progress
+      .then((profile) => profile.checkAccountNumberValue())
+      .then((profile) => profile.checkBalanceValue(balanceValueText))
+      .then((profile) => profile.checkBalanceCurrency("Kč"))
+      .then((profile) => profile.checkAccountTypeValue(accountType))
       .then((profile) => profile.clickLogoutButton())
       .then((login) => login.checkLoginFormIsVisible())
   });
@@ -88,3 +100,4 @@ test.describe.serial("e2e test - from registration to profile update", () => {
       .then((profile) => profile.checkAgeValue(age))
   });
 })
+
