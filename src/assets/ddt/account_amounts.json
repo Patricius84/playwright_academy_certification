@@ -1,0 +1,32 @@
+[
+    {
+        "firstname": "Peter",
+        "surname": "Fiala",
+        "accountType": "Current",
+        "balance": 0
+    },
+    {
+        "firstname": "James",
+        "surname": "Bond",
+        "accountType": "Savings",
+        "balance": 200000.52
+    },
+    {
+        "firstname": "Bono",
+        "surname": "Vox",
+        "accountType": "Loan",
+        "balance": -12345
+    },
+    {
+        "firstname": "John",
+        "surname": "Lenon",
+        "accountType": "Student",
+        "balance": -196000921
+    },
+    {
+        "firstname": "Donald",
+        "surname": "Trump",
+        "accountType": "Business",
+        "balance": 298000123
+    }
+]

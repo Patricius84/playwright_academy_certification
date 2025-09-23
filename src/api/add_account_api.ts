@@ -20,7 +20,7 @@ export async function createAccountViaAPI(request: APIRequestContext, username: 
       },
     }
   );
-
+  /*
   console.log("Status:", createResponse.status());
   const accountBody = await createResponse.json();
   console.log("Response:", accountBody);
@@ -33,4 +33,29 @@ export async function createAccountViaAPI(request: APIRequestContext, username: 
   expect(accountBody).toHaveProperty("status", "Active");
 
   return accountBody;
+  */
+
+  console.log("Status:", createResponse.status());
+
+  if (balanceValue > 99_999_999.99 || balanceValue < -99_999_999.99) {
+    // invalid balance - unsuccess expected
+    expect(createResponse.status()).toBeGreaterThanOrEqual(400);
+
+    const errorBody = await createResponse.json();
+    console.log("Account creation failed as expected:", errorBody);
+
+    return errorBody;
+  } else {
+    // valid balance - success expected 
+    const accountBody = await createResponse.json();
+    console.log("Account created:", accountBody);
+
+    expect(createResponse.status()).toBe(201);
+    expect(accountBody).toHaveProperty("accountNumber");
+    expect(accountBody).toHaveProperty("accountType", accountType);
+    expect(accountBody).toHaveProperty("balance", balanceValue);
+    expect(accountBody).toHaveProperty("status", "Active");
+
+    return accountBody;
+   }
 }

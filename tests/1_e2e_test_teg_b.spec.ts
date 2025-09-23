@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import { LoginPage } from "../src/pages/login_page";
 import { fakerEN as faker } from "@faker-js/faker";
+import { LoginPage } from "../src/pages/login_page";
 import { createAccountViaAPI } from "../src/api/add_account_api";
 
 test.describe.serial("e2e test - from registration to profile update", () => {
@@ -9,7 +9,7 @@ test.describe.serial("e2e test - from registration to profile update", () => {
   const randomNumber = faker.number.int({ max: 99 });
   const phone = faker.number.int({ min: 777000001, max: 777999999 }).toString()
   const age = faker.number.int({ min: 18, max: 59 }).toString()
-  const username = firstname + " " + surname;
+  const username = firstname + "." + surname;
   const password = faker.internet.password();
   const email = firstname + "." + surname + randomNumber + "@examle.net";
   const balanceValue = faker.number.int({ min: 1001, max: 199999 })
@@ -82,6 +82,7 @@ test.describe.serial("e2e test - from registration to profile update", () => {
       .then((profileEdit) => profileEdit.fillPhone(phone))
       .then((profileEdit) => profileEdit.fillAge(age))
       .then((profileEdit) => profileEdit.clickSaveChangesButton())
+      .then((profile) => profile.checkProfileDetailIsVisible())
       .then((profile) => profile.checkProfileUpdatedsuccessfullyText())
       .then((profile) => profile.clickProfileDetailEditButton())
       .then((profileEdit) => profileEdit.checkProfileDetailEditIsVisible())

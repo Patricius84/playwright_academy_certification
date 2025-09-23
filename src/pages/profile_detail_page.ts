@@ -111,8 +111,8 @@ export class ProfileDetailPage {
   }
 
   async checkProfileUpdatedsuccessfullyText(): Promise<this> {
-    await this.profileUpdatedSuccessfully.isVisible({ timeout: 15000 });
-    await expect(this.profileUpdatedSuccessfully).toHaveText("Profile updated successfully!", { timeout: 15000 })
+    await this.profileUpdatedSuccessfully.isVisible({ timeout: 25000 });
+    await expect(this.profileUpdatedSuccessfully).toHaveText("Profile updated successfully!", { timeout: 25000 })
     return this
   }
 

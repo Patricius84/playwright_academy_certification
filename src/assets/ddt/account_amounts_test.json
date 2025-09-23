@@ -1,0 +1,14 @@
+[
+    {
+        "firstname": "Peter",
+        "surname": "Pavel",
+        "accountType": "Term",
+        "balance": -199999999.52
+    },
+    {
+        "firstname": "ghost",
+        "surname": "rider",
+        "accountType": "Business",
+        "balance": 99999999.99
+    }
+]
