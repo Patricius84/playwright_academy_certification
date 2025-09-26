@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-test("login přes API - kontrola statusu a access token", async ({ request }) => {
+test("API tests - login via API and check status and access token", async ({ request }) => {
   const response = await request.post(
     "https://tegb-backend-877a0b063d29.herokuapp.com/tegb/login",
     {
@@ -17,10 +17,10 @@ test("login přes API - kontrola statusu a access token", async ({ request }) =>
     }
   );
   
-  // kontrola statusu 201
+  // check status 201
   expect(response.status()).toBe(201);
 
-  // kontrola, že v body je token typu string
+  // check body and token 
   const body = await response.json();
   expect(body).toHaveProperty("access_token");
   expect(typeof body.access_token).toBe("string");

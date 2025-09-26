@@ -4,7 +4,7 @@ import { LoginPage } from "../src/pages/login_page";
 import accountAmountData from "../src/assets/ddt/account_amounts.json";
 import { createAccountViaAPI } from "../src/api/add_account_api";
 
-test.describe("data driven test - check account amounts", () => {
+test.describe("data driven tests - check account amounts", () => {
   accountAmountData.forEach((item, index) => {
     const { firstname, surname, accountType, balance } = item;
 
@@ -36,13 +36,12 @@ test.describe("data driven test - check account amounts", () => {
         .then((login) => login.checkProfileDetailIsVisible());
 
         const account = await createAccountViaAPI(request, username, password, accountType, balance);
-        /*
-        console.log("account created:", username,",", password,",", account.accountNumber,",", account.balance,",", account.accountType);
-        */
+
         if (balance > 99_999_999.99 || balance < -99_999_999.99) {
         // invalid balance - unsuccess expected
             console.log("Account creation failed due to invalid balance");
         } else {
+        // valid balance 
             console.log("account created:", username,",", account.accountNumber,",", account.balance,",", account.accountType);
         }
     });

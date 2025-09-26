@@ -4,7 +4,7 @@ import { ProfileDetailPage } from "../src/pages/profile_detail_page";
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-test.describe("atomic tests for dashboard", () => {
+test.describe("atomic tests - check dashboard", () => {
   const username = process.env.USERNAME2!;
   const password = process.env.PASSWORD2!;
 

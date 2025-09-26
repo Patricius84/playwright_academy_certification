@@ -1,0 +1,26 @@
+import { test, expect } from "@playwright/test";
+
+test.describe("visual tests - check filled in profile", () => {
+
+    test("Exercise: Visual Tests", async ({ page }) => {
+    })
+});
+
+
+
+const formAriaSnapshot = `
+- form "Correct ARIA Form":
+  - heading "Correct ARIA Form" [level=3]
+  - text: "Name:"
+  - textbox "Name:"
+  - text: "Email:"
+  - textbox "Email:"
+  - button "Submit contact form": Submit
+`;
+
+test("Aria Snapshot Test", async ({ page }) => {
+  await page.goto("https://tredgate.com/webtrain/aria-testing.html");
+  await expect(
+    page.locator('[aria-labelledby="correct-form-label"]')
+  ).toMatchAriaSnapshot(formAriaSnapshot);
+});

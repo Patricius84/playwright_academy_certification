@@ -3,7 +3,7 @@ import { fakerEN as faker } from "@faker-js/faker";
 import { LoginPage } from "../src/pages/login_page";
 import { createAccountViaAPI } from "../src/api/add_account_api";
 
-test.describe.serial("e2e test - from registration to profile update", () => {
+test.describe.serial("e2e tests - register, login, create account and fill in profile", () => {
   const firstname = faker.person.firstName()
   const surname = faker.person.lastName();
   const randomNumber = faker.number.int({ max: 99 });
@@ -64,7 +64,7 @@ test.describe.serial("e2e test - from registration to profile update", () => {
       .then((login) => login.checkLoginFormIsVisible())
   });
 
-  test("fill out user's profile and logout", async ({ page }) => {
+  test("fill in user's profile and logout", async ({ page }) => {
     const loginPage = new LoginPage(page);
 
     await loginPage
