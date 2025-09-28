@@ -12,3 +12,5 @@ test("API tests - login via API and check access token", async ({ request }) => 
   expect(typeof token).toBe("string");
   expect(token.length).toBeGreaterThan(0);
 });
+
+// change for PR

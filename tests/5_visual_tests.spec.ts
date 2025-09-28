@@ -40,3 +40,5 @@ test.describe("visual tests - check filled in profile", () => {
       .then((profile) => profile.checkProfileFormSnapshot())
   })
 });
+
+// change for PR

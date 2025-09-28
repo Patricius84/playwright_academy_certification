@@ -104,3 +104,5 @@ test.describe("atomic tests - check dashboard", () => {
       .then((login) => login.checkLoginButton("Přihlásit se"))
   });
 })
+
+// change for PR
