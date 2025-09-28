@@ -27,6 +27,8 @@ export class ProfileDetailPage {
   readonly accountTypeColumnHeader: Locator;
   readonly accountTypeValue: Locator;
   readonly addAccountButton: Locator;
+  readonly formAriaSnapshot: Locator;
+  readonly profileForm: Locator;
   readonly logoutButton: Locator;
 
   constructor(page: Page) {
@@ -54,6 +56,8 @@ export class ProfileDetailPage {
     this.accountTypeColumnHeader = page.locator('th[data-testid="account-type-heading"]');
     this.accountTypeValue = page.locator('td[data-testid="account-type"]')
     this.addAccountButton = page.locator('button[class="account-action"]');
+    this.formAriaSnapshot = page.locator('div[data-testid="account-summary"]')
+    this.profileForm = page.locator('div[data-testid="account-summary"]')
     this.logoutButton = page.locator('button[class="logout-link"]');
   }
 
@@ -244,6 +248,22 @@ export class ProfileDetailPage {
 
   async clickAddAccountButton(): Promise<this> {
     await this.addAccountButton.click()
+    return this
+  }
+
+  async checkFormAriaSnapshot(formAriaSnapshot: string): Promise<this> {
+    await expect(this.formAriaSnapshot)
+    .toMatchAriaSnapshot(formAriaSnapshot);
+    return this
+  }
+
+  async checkFullPageSnapshot(): Promise<this> {
+      await expect(this.page).toHaveScreenshot("dashboard.png", {fullPage: true});
+    return this
+  }
+
+  async checkProfileFormSnapshot(): Promise<this> {
+    await expect(this.profileForm).toHaveScreenshot("profile_form.png");
     return this
   }
 

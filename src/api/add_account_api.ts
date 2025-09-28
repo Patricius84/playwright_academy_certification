@@ -20,20 +20,6 @@ export async function createAccountViaAPI(request: APIRequestContext, username: 
       },
     }
   );
-  /*
-  console.log("Status:", createResponse.status());
-  const accountBody = await createResponse.json();
-  console.log("Response:", accountBody);
-
-  // check properrties and values
-  expect(createResponse.status()).toBe(201);
-  expect(accountBody).toHaveProperty("accountNumber");
-  expect(accountBody).toHaveProperty("accountType", accountType);
-  expect(accountBody).toHaveProperty("balance", balanceValue);
-  expect(accountBody).toHaveProperty("status", "Active");
-
-  return accountBody;
-  */
 
   console.log("Status:", createResponse.status());
 

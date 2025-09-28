@@ -42,12 +42,12 @@ test.describe.serial("e2e tests - register, login, create account and fill in pr
       console.log("password:", password);
   });
 
-  test("create new account via API request", async ({ request }) => {
+  test("create new account via API", async ({ request }) => {
     const account = await createAccountViaAPI(request, username, password, accountType, balanceValue);
     console.log("account created:", account.accountNumber);
   });
 
-  test("check new account and logout", async ({ page }) => {
+  test("check new account", async ({ page }) => {
     const loginPage = new LoginPage(page);
 
     await loginPage
@@ -64,7 +64,7 @@ test.describe.serial("e2e tests - register, login, create account and fill in pr
       .then((login) => login.checkLoginFormIsVisible())
   });
 
-  test("fill in user's profile and logout", async ({ page }) => {
+  test("fill in user's profile", async ({ page }) => {
     const loginPage = new LoginPage(page);
 
     await loginPage
