@@ -25,3 +25,5 @@ test("API tests - login via API and check status and access token", async ({ req
   expect(body).toHaveProperty("access_token");
   expect(typeof body.access_token).toBe("string");
 });
+
+// change for PR

@@ -5,7 +5,7 @@ api test included in e2e tests - 100 % done
 api test for login             - 100 % done
 data driven tests              - 100 % done
 atomic tets                    - 100 % done
-visual tests                   -   0 %
+visual tests                   - 100 % done
 
 //-----------------------------------
 
